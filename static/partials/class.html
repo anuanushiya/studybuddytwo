@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>buddies in {{class}}</h1>
+        <div id="nav">
+            <a onclick="goBack()">
+                <button class="btn btn-default btn-lg">back</button>
+            </a>
+        </div>
+        <br/><br/>
+        <div class="container" ng-repeat="buddy in buddies | filter: {class: class}">
+            <div class="row">
+                <a ui-sref="home.buddy({username: buddy.username})">
+                    <div class="col-xs-12" style="background-color: #7E7E71">
+                        <h3>{{buddy.username}}</h3>
+                    </div>
+                </a>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

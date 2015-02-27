@@ -1,41 +1,21 @@
-<div ng-controller='BuddiesCtrl' class="container">
+<div ng-controller='GroupsCtrl' class="container">
     <div class="jumbotron">
         <h1>buddies</h1>
         <p>see what others are studying for.</p>
-        <button class="btn btn-default btn-lg" ng-click="show=false">added</button>
-        <button class="btn btn-default btn-lg" ng-click="show=true">search new</button>
-        <br /><br />
-        <!--do something like a dropbar menu to choose ng-model to search for -->
-        <input class="form-control" type="search" ng-model="q.username" placeholder="search study buddies..." />
-    </div>
-    <div ng-if="results.length == 0">
-        <strong>No results found for "{{q}}".</strong>
-    </div>
-    <div ng-show="show" class="container" ng-if="results.length != buddies.length" ng-repeat="buddy in buddies | filter:q as results">
-        <div ng-if="buddy.buddy === 0" class="row">
-            <a ui-sref="home.buddy({username: buddy.username})">
+        <div>
+            <p><strong>Pick a class to search for buddies.<strong></p>
+        </div>
+        <!--do something like a dropbar menu to choose ng-model to search for --></div>
+
+    <div class="container" ng-repeat="group in groups">
+        <div class="row">
+            <a ui-sref="class({class: group.class})">
                 <div class="col-xs-12" style="background-color: #7E7E71">
-                    <h3>{{buddy.username}}</h3>
-                    <h4 ng-show="buddy.class">is studying for {{buddy.class}}</h4>
-                    <h4 ng-show="!buddy.class">is not studying right now.</h4>
+                    <h3>{{group.class}}</h3>
                 </div>
             </a>
         </div>
         <br />
-    </div>
-    <div ng-show="!show">
-        <h3>Added Buddies</h3>
-        <div ng-repeat="buddy in buddies">
-            <a ng-if="buddy.buddy === 1" ui-sref="home.buddy({username: buddy.username})">
-                <div class="col-xs-12" style="background-color: darkolivegreen">
-                    <h3>{{buddy.username}}</h3>
-                    <h4 ng-show="buddy.class">is studying for {{buddy.class}}</h4>
-                    <h4 ng-show="!buddy.class">is not studying right now.</h4>
-                </div>
-                <br/>
-            </a>
-            <br/><br/><br/><br/>
-        </div>
     </div>
 </div>
 <style>

@@ -62,6 +62,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             templateUrl: "partials/home.buddies.html",
             controller: 'BuddiesCtrl'
         })
+        .state("class", {
+            url: '/:class',
+            templateUrl: "partials/class.html",
+            controller: "ClassCtrl"
+        })
         .state("home.profile", {
             url: '/profile',
             templateUrl: "partials/home.profile.html",
@@ -91,6 +96,26 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 app.config(function($locationProvider) {
     $locationProvider.html5Mode(true);
+});
+
+app.controller('ClassCtrl', function($http, $scope, $state, $stateParams) {
+    $scope.class = $stateParams.class;
+
+    $scope.buddies = [];
+
+    var query = new Parse.Query("Buddies");
+    query.find({
+        success: function(results) {
+            for(var i = 0; i < results.length; i++) {
+                $scope.buddies.push(results[i].attributes);
+                $scope.$apply();
+            }
+        },
+        error: function(error) {
+
+        }
+    });
+
 });
 
 app.controller('UserCtrl', function($http, $scope, $state) {
