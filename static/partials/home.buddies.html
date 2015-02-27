@@ -8,7 +8,7 @@
         <!--do something like a dropbar menu to choose ng-model to search for --></div>
 
     <div class="container" ng-repeat="group in groups | unique: 'class'">
-        <div class="row">
+        <div ng-if="group.in === 1" class="row">
             <a ui-sref="class({class: group.class})">
                 <div class="col-xs-12" style="background-color: darkolivegreen">
                     <h3>{{group.class}}</h3>

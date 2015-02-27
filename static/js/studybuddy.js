@@ -103,20 +103,34 @@ app.controller('ClassCtrl', function($http, $scope, $state, $stateParams) {
 
     $scope.buddies = [];
 
-    $scope.description = null;
+    $scope.temp = null;
 
     var query = new Parse.Query("Buddies");
     query.find({
-        success: function(results) {
-            for(var i = 0; i < results.length; i++) {
+        success: function (results) {
+            for (var i = 0; i < results.length; i++) {
                 $scope.buddies.push(results[i].attributes);
                 $scope.$apply();
             }
         },
-        error: function(error) {
+        error: function (error) {
 
         }
     });
+
+    $scope.description = function(buddy) {
+        var query1 = new Parse.Query("Groups");
+        query1.equalTo("owner", buddy);
+        query1.first({
+            success: function(object) {
+                $scope.temp = object.attributes.description;
+                $scope.$apply();
+            }, error: function(error) {
+
+            }
+        });
+        return $scope.temp;
+    };
 });
 
 app.controller('UserCtrl', function($http, $scope, $state) {
