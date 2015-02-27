@@ -1,0 +1,36 @@
+<div class="container">
+    <form role="form">
+        <div class="form-group">
+            <input type="text" ng-model="data.class" class="form-control" placeholder="class">
+        </div>
+        <div class="form-group">
+            <input type="number" ng-model="data.member_limit" class="form-control" placeholder="member limit">
+        </div>
+        <div class="form-group">
+            <input type="text" ng-model="data.location" class="form-control" placeholder="location">
+        </div>
+        <div class="form-group">
+            <textarea ng-model="data.description" class="form-control" placeholder="description"></textarea>
+        </div>
+        <div class="form-group">
+            <h3>date</h3>
+            <input ng-model="data.date" type="date" class="form-control" placeholder="start time">
+        </div>
+        <div class="form-group">
+            <h3>start time</h3>
+            <input type="time" ng-model="data.start_time" class="form-control" placeholder="start time">
+        </div>
+        <div class="form-group">
+            <h3>end time</h3>
+            <input type="time" ng-model="data.end_time" class="form-control" placeholder="end time">
+        </div>
+        <!--<div class="form-group">
+            <h3>privacy</h3>
+            <select style="color: black">
+                <option style="color: black" value="public">public</option>
+                <option style="color: black" value="private">private</option>
+            </select>
+        </div>-->
+        <input type="submit" href="#" value="create" ng-click="addGroup(data)" class="btn btn-default btn-lg"></button>
+    </form>
+</div>

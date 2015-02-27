@@ -1,0 +1,94 @@
+<div class="container">
+    <div ng-if="group !== 0"class="jumbotron">
+        <h1>{{group.class}}</h1>
+        <h2><a ui-sref="home.buddy({username: group.owner})"><b style="color: darkolivegreen">{{group.owner}}</b></b></a>'s study group</h2>
+        <p>
+            Members: {{group.members}}/{{group.member_limit}}<br/>
+            Location: {{group.location}}<br/>
+            Description: {{group.description}}<br />
+            Date: {{group.date | date: 'shortDate'}}<br />
+            Start Time: {{group.start_time | date: 'shortTime'}}<br />
+            End Time: {{group.end_time | date: 'shortTime'}}
+        </p>
+        <div id="nav">
+            <a onclick="goBack()">
+                <button class="btn btn-default btn-lg">back</button>
+            </a>
+        </div>
+        <br/><br/>
+        <div>
+            <div class="row">
+                <a ng-show="group.in === 1 && group.current === 0" ng-click="setCurrent({owner: group.owner})" href="#">
+                    <div class="col-xs-12" style="background-color: darkolivegreen">
+                        <h3>join group</h3>
+                    </div>
+                    <br /><br/><br /><br/>
+                </a>
+                <a ng-show="group.current === 1" ng-click="leaveCurrent({owner: group.owner})" href="#">
+                    <div class="col-xs-12" style="background-color: darkred">
+                        <h3>leave group</h3>
+                    </div>
+                    <br /><br /><br/><br/>
+                </a>
+                <a ng-show="group.current === 0 && group.in === 1  && group.owner !== user.getUsername()" href="#" ng-click="removeGroup({owner: group.owner})">
+                    <div class="col-xs-12" style="background-color: darkred">
+                        <h3>remove group</h3>
+                    </div>
+                    <br /><br /><br/><br/>
+                </a>
+                <a ng-show="group.in === 0" href="#" ng-click="addGroup({owner: group.owner})">
+                    <div class="col-xs-12" style="background-color: darkseagreen">
+                        <h3>add group</h3>
+                    </div>
+                    <br /><br/><br /><br/>
+                </a>
+                <a ng-show="group.owner === user.getUsername()" href="#" ng-click="deleteGroup({owner: group.owner})">
+                    <div class="col-xs-12" style="background-color: darkred">
+                        <h3>delete group</h3>
+                    </div>
+                    <br /><br/><br/><br/>
+                </a>
+            </div>
+        </div>
+        <br/><br />
+        <div ng-if="user.getUsername() === group.owner">
+            <h3>edit group</h3>
+            <form role="form">
+                <div class="form-group">
+                    <input type="text" ng-model="data.class" class="form-control" placeholder="{{group.class}}">
+                </div>
+                <div class="form-group">
+                    <input type="number" ng-model="data.member_limit" class="form-control" placeholder="{{group.member_limit}}">
+                </div>
+                <div class="form-group">
+                    <input type="text" ng-model="data.location" class="form-control" placeholder="{{group.location}}">
+                </div>
+                <div class="form-group">
+                    <textarea ng-model="data.description" class="form-control" placeholder="{{group.description}}"></textarea>
+                </div>
+                <div class="form-group">
+                    <h3>date</h3>
+                    <input ng-model="data.date" type="date" class="form-control" placeholder="{{group.date}}">
+                </div>
+                <div class="form-group">
+                    <h3>start time</h3>
+                    <input type="time" ng-model="data.start_time" class="form-control" placeholder="{{group.start_time}}">
+                </div>
+                <div class="form-group">
+                    <h3>end time</h3>
+                    <input type="time" ng-model="data.end_time" class="form-control" placeholder="{{group.end_time}}">
+                </div>
+                <button type="submit" href="#" value="edit" ng-click="editGroup(data)" class="btn btn-default btn-lg">edit</button>
+                <button type="reset" class="btn btn-default btn-lg">reset</button>
+            </form>
+
+        </div>
+        <br/><br />
+    </div>
+    <div class="jumbotron" ng-if="group == 0">
+        <h3>This page does not exist.</h3>
+        <a onclick="goBack()">
+            <button class="btn btn-default btn-lg">back</button>
+        </a>
+    </div>
+</div>

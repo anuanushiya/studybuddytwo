@@ -1,0 +1,38 @@
+[
+  {
+    "username": "johngamboa",
+    "class": "CSE 170",
+    "group": "johngamboa",
+    "buddy": 1
+  },
+  {
+    "username": "vilanle",
+    "class": "CSE 30",
+    "group": "vilanle",
+    "buddy": 1
+  },
+  {
+    "username":"rayyada",
+    "class":"CSE 21",
+    "group": "rayyada",
+    "buddy": 1
+  },
+  {
+    "username":"josephnle",
+    "class": "CSE 170",
+    "group": "johngamboa",
+    "buddy": 1
+  },
+  {
+    "username":"jamiesantos",
+    "class": "CSE 21",
+    "group": "rayyada",
+    "buddy": 1
+  },
+  {
+    "username":"hiimenzo",
+    "class": "CSE 105",
+    "group": "hiimenzo",
+    "buddy": 1
+  }
+]

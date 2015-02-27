@@ -1,0 +1,38 @@
+<div class="container" ng-controller='BuddyCtrl'>
+    <div ng-if="buddy !== 0"class="jumbotron">
+        <h1>{{buddy.username}}</h1>
+        <p ng-show="buddy.class || buddy.group">{{buddy.username}} is currently studying for {{buddy.class}}.</p>
+        <p ng-show="!buddy.class || !buddy.group">{{buddy.username}} is not studying right now.</p>
+        <br /><br />
+        <div ng-hide="!buddy.class || !buddy.group" class="row">
+            <a ui-sref="home.group({class: buddy.class, owner: buddy.group})">
+                <div class="col-xs-12" style="background-color: none; border-color: white; border-style: solid;">
+                    <h3>view study group</h3>
+                </div>
+            </a>
+        </div>
+        <br />
+        <div ng-show="user.getUsername() !== buddy.username" class="row">
+            <a href="#">
+                <div ng-if="buddy.buddy === 1" ng-click="removeBuddy({buddy: buddy.username})"class="col-xs-12" style="background-color: darkred">
+                    <h3>remove buddy</h3>
+                </div>
+            </a>
+            <a href="#">
+                <div ng-if="buddy.buddy === 0" ng-click="addBuddy({buddy: buddy.username})" class="col-xs-12" style="background-color: darkolivegreen">
+                    <h3>add buddy</h3>
+                </div>
+            </a>
+        </div>
+        <br />
+        <a onclick="goBack()">
+            <button class="btn btn-default btn-lg">back</button>
+        </a>
+    </div>
+    <div class="jumbotron" ng-if="buddy == 0">
+        <h3>This user does not exist.</h3>
+        <a onclick="goBack()">
+            <button class="btn btn-default btn-lg">back</button>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>profile</h1>
+        <p>view or update your information</p>
+    </div>
+    <div>
+        <form role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" value="{{user.getUsername()}}" ng-model="data.username" placeholder="{{user.getUsername()}}">
+            </div>
+            <div class="form-group">
+                <input type="password" ng-model="data.old" class="form-control" placeholder="old password">
+            </div>
+            <div class="form-group">
+                <input type="password" ng-model="data.password" class="form-control" placeholder="new password">
+            </div>
+            <div class="form-group">
+                <input type="password" ng-model="data.new" class="form-control" placeholder="retype new password">
+            </div>
+            <div id="buttons">
+                <button type="submit" ng-click="update(data)" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span> save</button>
+                <button type="reset" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> reset</button>
+            </div>
+            <br/><br/>
+            <div class="container">
+                <div class="row">
+                    <a href="#" ng-click="deleteAccount()">
+                        <div class="col-xs-12" style="background-color: darkred">
+                            <h3>delete account</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br/><br/>
+</div>
+<style>
+    .glyphicon-ok, .glyphicon-refresh {
+        font-size: 30px;
+    }
+
+    #buttons {
+        text-align: center;
+    }
+</style>

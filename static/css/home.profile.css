@@ -1,0 +1,16 @@
+img {
+    border-radius: 50%;
+}
+#pic {
+    text-align: center;
+}
+#pic > input  {
+    display: none;
+}
+.glyphicon-ok, .glyphicon-refresh {
+    font-size: 40px;
+}
+
+#buttons {
+    text-align: center;
+}

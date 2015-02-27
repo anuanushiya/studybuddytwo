@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>studybuddy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <link href="css/main.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="navbar" class="col-xs-12 navbar-inverse navbar-fixed-bottom">
+            <div style="margin-top: 10px;" class="row" id="bottomNav">
+                <div class="col-xs-3 text-center"><a ui-sref="home.groups"><i class="glyphicon glyphicon-home"></i><br>home</a></div>
+                <div class="col-xs-3 text-center"><a ui-sref="home.buddies"><i class="glyphicon glyphicon-globe"></i><br>buddies</a></div>
+                <div class="col-xs-3 text-center"><a ui-sref="home.profile"><i class="glyphicon glyphicon-user"></i><br>profile</a></div>
+                <div class="col-xs-3 text-center"><a ng-click="logOut(user)" href="#"><i class="glyphicon glyphicon-log-out"></i><br>logout</a></div>
+            </div>
+        </div>
+        <div ui-view></div>
+        <div style="width: 100%; height: 100px"></div>
+    </body>
+</html>

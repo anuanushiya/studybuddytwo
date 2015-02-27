@@ -1,0 +1,53 @@
+body {
+    background-color: #3E4F59;
+    color: white;
+}
+
+.jumbotron {
+    position: relative;
+    background: none;
+}
+
+.form-control {
+    border-radius: 20px;
+}
+
+.btn-lg {
+    background: none;
+    color: white;
+}
+
+.btn-lg:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;;
+    -o-transition:color .5s ease-out, background .2s ease-in;
+    -ms-transition:color .5s ease-out, background .2s ease-in;
+    -moz-transition:color .5s ease-out, background .2s ease-in;
+    -webkit-transition:color .5s ease-out, background .2s ease-in;
+    /* ...and now override with proper CSS property */
+    transition:color .5s ease-out, background .2s ease-in;
+}
+
+ a, a:hover {
+     text-align: center;
+     color: white;
+     text-decoration: none;
+ }
+a:focus {
+    text-decoration: none;
+    color: #808080;
+}
+h3 {
+    font-weight: bolder;
+}
+i {
+    font-size: 20px;
+}
+.col-xs-12 {
+    text-align: center;
+    border-radius: 24px;
+}
+
+#navbar {
+    border-radius: 0px;
+}

@@ -1,0 +1,18 @@
+<div class="container">
+    <form role="form">
+        <div class="form-group">
+            <input type="text" ng-model="user.username" class="form-control" placeholder="username">
+        </div>
+        <div class="form-group">
+            <input type="email" ng-model="user.email" class="form-control" placeholder="email">
+        </div>
+        <div class="form-group">
+            <input type="password" ng-model="user.password" class="form-control" placeholder="password">
+        </div>
+        <div class="form-group">
+            <input type="password" ng-model="user.retype" class="form-control" placeholder="retype password">
+        </div>
+        <input ng-click="signUp(user)" value="register" type="submit" class="btn btn-default btn-lg"></button>
+        <input ui-sref="login.login" value="back" type="button" class="btn btn-default btn-lg"></button>
+    </form>
+</div>
