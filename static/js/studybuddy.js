@@ -103,6 +103,8 @@ app.controller('ClassCtrl', function($http, $scope, $state, $stateParams) {
 
     $scope.buddies = [];
 
+    $scope.description = null;
+
     var query = new Parse.Query("Buddies");
     query.find({
         success: function(results) {
@@ -115,7 +117,6 @@ app.controller('ClassCtrl', function($http, $scope, $state, $stateParams) {
 
         }
     });
-
 });
 
 app.controller('UserCtrl', function($http, $scope, $state) {
@@ -617,4 +618,43 @@ app.controller('BuddyCtrl', function($http, $scope, $state, $stateParams) {
             }
         });
     }
+});
+
+app.filter('unique', function () {
+
+    return function (items, filterOn) {
+
+        if (filterOn === false) {
+            return items;
+        }
+
+        if ((filterOn || angular.isUndefined(filterOn)) && angular.isArray(items)) {
+            var hashCheck = {}, newItems = [];
+
+            var extractValueToCompare = function (item) {
+                if (angular.isObject(item) && angular.isString(filterOn)) {
+                    return item[filterOn];
+                } else {
+                    return item;
+                }
+            };
+
+            angular.forEach(items, function (item) {
+                var valueToCheck, isDuplicate = false;
+
+                for (var i = 0; i < newItems.length; i++) {
+                    if (angular.equals(extractValueToCompare(newItems[i]), extractValueToCompare(item))) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+                if (!isDuplicate) {
+                    newItems.push(item);
+                }
+
+            });
+            items = newItems;
+        }
+        return items;
+    };
 });
