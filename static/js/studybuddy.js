@@ -17,6 +17,7 @@ $('input').focus( function() {
 });
 
 function goBack() {
+    woopra.track("go_back");
     window.history.go(-1);
 };
 

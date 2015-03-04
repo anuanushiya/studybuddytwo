@@ -9,8 +9,14 @@
         <br/><br/>
         <div class="container" ng-repeat="buddy in buddies | filter: {class: class}">
             <div class="row">
-                <a ui-sref="home.buddy({username: buddy.username})">
-                    <div class="col-xs-12" style="background-color: darkolivegreen">
+                <a onclick="clickBuddy()" ui-sref="home.buddy({username: buddy.username})">
+                    <div ng-if="buddy.buddy === 1" class="col-xs-12" style="background-color: darkolivegreen">
+                        <h3>{{buddy.username}}</h3>
+                        <p>
+                            {{description(buddy.group)}}
+                        </p>
+                    </div>
+                    <div ng-if="buddy.buddy === 0" class="col-xs-12" style="background-color: #7E7E71">
                         <h3>{{buddy.username}}</h3>
                         <p>
                             {{description(buddy.group)}}
@@ -22,3 +28,8 @@
         </div>
     </div>
 </div>
+<script>
+    function clickBuddy() {
+        woopra.track("click_buddy");
+    }
+</script>

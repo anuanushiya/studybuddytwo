@@ -14,11 +14,11 @@
         <br />
         <div ng-show="user.getUsername() !== buddy.username" class="row">
             <a href="#">
-                <div ng-if="buddy.buddy === 1" ng-click="removeBuddy({buddy: buddy.username})"class="col-xs-12" style="background-color: darkred">
+                <div onclick="clickRemoveBuddy()" ng-if="buddy.buddy === 1" ng-click="removeBuddy({buddy: buddy.username})"class="col-xs-12" style="background-color: darkred">
                     <h3>remove buddy</h3>
                 </div>
             </a>
-            <a href="#">
+            <a onclick="clickAddBuddy()" href="#">
                 <div ng-if="buddy.buddy === 0" ng-click="addBuddy({buddy: buddy.username})" class="col-xs-12" style="background-color: darkolivegreen">
                     <h3>add buddy</h3>
                 </div>
@@ -36,3 +36,12 @@
         </a>
     </div>
 </div>
+<script>
+    function clickAddBuddy() {
+        woopra.track("add_buddy");
+    }
+
+    function clickRemoveBuddy() {
+        woopra.track("remove_buddy");
+    }
+</script>
