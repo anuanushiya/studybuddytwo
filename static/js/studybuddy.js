@@ -384,98 +384,93 @@ app.controller('GroupCtrl', function($scope, $http, $state, $stateParams) {
     }
 
     $scope.setCurrent = function(owner) {
-        if(confirm("Do you want to set this group as your current study group?")) {
-            var query1 = new Parse.Query("Groups");
-            query1.equalTo("current", 1);
-            query1.first({
-                success: function (object) {
-                    object.set("current", 0);
-                    object.set("members", object.attributes.members - 1);
-                    object.save();
-                },
-                error: function (error) {
+        var query1 = new Parse.Query("Groups");
+        query1.equalTo("current", 1);
+        query1.first({
+            success: function (object) {
+                object.set("current", 0);
+                object.set("members", object.attributes.members - 1);
+                object.save();
+            },
+            error: function (error) {
 
-                }
-            });
+            }
+        });
 
-            var query2 = new Parse.Query("Groups");
-            query2.equalTo("owner", owner.owner);
-            query2.first({
-                success: function (object) {
-                    object.set("members", object.attributes.members + 1);
-                    object.set("current", 1);
-                    object.save();
-                },
-                error: function (error) {
+        var query2 = new Parse.Query("Groups");
+        query2.equalTo("owner", owner.owner);
+        query2.first({
+            success: function (object) {
+                object.set("members", object.attributes.members + 1);
+                object.set("current", 1);
+                object.save();
+            },
+            error: function (error) {
 
-                }
-            });
+            }
+        });
 
-            var query3 = new Parse.Query("Buddies");
-            query3.equalTo("username", $scope.user.getUsername());
-            query3.first({
-                success: function (object) {
-                    object.set("group", owner.owner);
-                    object.set("class", $scope.class);
-                    object.save();
-                    $.sticky("<p>You set this group as your current study group</p><br/>");
-                    $state.go($state.current, {}, {reload: true});
-                },
-                error: function (error) {
+        var query3 = new Parse.Query("Buddies");
+        query3.equalTo("username", $scope.user.getUsername());
+        query3.first({
+            success: function (object) {
+                object.set("group", owner.owner);
+                object.set("class", $scope.class);
+                object.save();
+                $.sticky("<p>You set this group as your current study group</p><br/>");
+                $state.go($state.current, {}, {reload: true});
+            },
+            error: function (error) {
 
-                }
-            });
-        }
+            }
+        });
     };
 
     $scope.leaveCurrent = function(owner) {
-        if(confirm("Are you sure you want to leave this group?")) {
-            var query1 = new Parse.Query("Groups");
-            query1.equalTo("current", 1);
-            query1.first({
-                success: function (object) {
-                    object.set("current", 0);
-                    object.set("members", object.attributes.members - 1);
-                    object.save();
-                },
-                error: function (error) {
+        var query1 = new Parse.Query("Groups");
+        query1.equalTo("current", 1);
+        query1.first({
+            success: function (object) {
+                object.set("current", 0);
+                object.set("members", object.attributes.members - 1);
+                object.save();
+            },
+            error: function (error) {
 
-                }
-            });
+            }
+        });
 
-            var query2 = new Parse.Query("Buddies");
-            query2.equalTo("username", $scope.user.getUsername());
-            query2.first({
-                success: function (object) {
-                    object.set("class", "");
-                    object.set("group", "");
-                    object.save();
-                    $.sticky("<p>You left the group.</p><br/>");
-                    $state.go("home.groups");
-                },
-                error: function (error) {
+        var query2 = new Parse.Query("Buddies");
+        query2.equalTo("username", $scope.user.getUsername());
+        query2.first({
+            success: function (object) {
+                object.set("class", "");
+                object.set("group", "");
+                object.save();
+                $.sticky("<p>You left the group.</p><br/>");
+                $state.go("home.groups");
+            },
+            error: function (error) {
 
-                }
-            });
-        }
+            }
+        });
     };
 
     $scope.addGroup = function(owner) {
-        if(confirm("Are you sure you want to add this group?")) {
-            var query1 = new Parse.Query("Groups");
-            query1.equalTo("owner", owner.owner);
-            query1.first({
-                success: function (object) {
-                    object.set("in", 1);
-                    object.save();
-                    $.sticky("<p>Group added.</p><br/>");
-                    $state.go($state.current, {}, {reload: true});
-                },
-                error: function (error) {
+        var query1 = new Parse.Query("Groups");
+        query1.equalTo("owner", owner.owner);
+        query1.first({
+            success: function (object) {
+                object.set("in", 1);
+                object.save();
+                $.sticky("<p>Group added.</p><br/>");
+                $state.go($state.current, {}, {reload: true});
+            },
+            error: function (error) {
 
-                }
-            });
-        }
+            }
+        });
+
     };
 
     $scope.removeGroup = function(owner) {
