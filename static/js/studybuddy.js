@@ -212,7 +212,6 @@ app.controller('UserCtrl', function($http, $scope, $state) {
             success: function(user) {
                 $scope.user = user;
                 $scope.$apply();
-                $.sticky("<p>You have successfully logged in!</p><br/>");
                 $state.go("home.groups");
             },
             error: function(user, error) {
