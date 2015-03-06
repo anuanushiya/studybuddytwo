@@ -17,7 +17,7 @@ $('input').focus( function() {
 });
 
 function goBack() {
-    woopra.track("go_back");
+    //woopra.track("go_back");
     window.history.go(-1);
 };
 
@@ -106,6 +106,8 @@ app.controller('ClassCtrl', function($http, $scope, $state, $stateParams) {
 
     $scope.temp = null;
 
+    $scope.groups = [];
+
     var query = new Parse.Query("Buddies");
     query.find({
         success: function (results) {
@@ -119,19 +121,18 @@ app.controller('ClassCtrl', function($http, $scope, $state, $stateParams) {
         }
     });
 
-    $scope.description = function(buddy) {
-        var query1 = new Parse.Query("Groups");
-        query1.equalTo("owner", buddy);
-        query1.first({
-            success: function(object) {
-                $scope.temp = object.attributes.description;
+    var query1 = new Parse.Query("Groups");
+    query1.find({
+        success: function (results) {
+            for (var i = 0; i < results.length; i++) {
+                $scope.groups.push(results[i].attributes);
                 $scope.$apply();
-            }, error: function(error) {
-
             }
-        });
-        return $scope.temp;
-    };
+        },
+        error: function (error) {
+
+        }
+    });
 });
 
 app.controller('UserCtrl', function($http, $scope, $state) {
@@ -171,11 +172,11 @@ app.controller('UserCtrl', function($http, $scope, $state) {
             user.set("password", form.password);
             user.save();
             $scope.user = user;
-            alert("You have successfully updated your profile.");
+            $.sticky("<p>You have successfully updated your profile.</p><br/>");
             $state.go($state.current, {}, {reload: true});
         }
         else {
-            alert("Passwords do not match.");
+            $.sticky("Passwords do not match.");
         }
     };
 
@@ -211,10 +212,11 @@ app.controller('UserCtrl', function($http, $scope, $state) {
             success: function(user) {
                 $scope.user = user;
                 $scope.$apply();
+                $.sticky("<p>You have successfully logged in!</p><br/>");
                 $state.go("home.groups");
             },
             error: function(user, error) {
-                alert("Unable to log in: " + error.code + " " + error.message);
+                $.sticky("<p>username/password incorrect.</p><br/>");
             }
         });
     };
@@ -234,7 +236,7 @@ app.controller('UserCtrl', function($http, $scope, $state) {
                     $scope.user = user;
                     $scope.$apply();
                     buddy.save();
-                    alert("You have successfully registered");
+                    $.sticky("<p>You have successfully registered!</p><br/>");
                     $state.go("login.login");
                 },
                 error: function (user, error) {
@@ -243,7 +245,7 @@ app.controller('UserCtrl', function($http, $scope, $state) {
             });
         }
         else {
-            alert("Passwords do not match up. Please re-enter passwords.");
+            $.sticky("<p>Passwords do not match. Please try again.</p><br/>");
         }
     };
 
@@ -252,6 +254,7 @@ app.controller('UserCtrl', function($http, $scope, $state) {
             Parse.User.logOut();
             $scope.user = null;
             $state.go("login.login");
+            $.sticky("<p>You logged out.</p><br/>");
         }
     };
 });
@@ -337,6 +340,7 @@ app.controller('GroupsCtrl', function($scope, $http, $state) {
             group.set("end_time", data.end_time);
             group.save(null, {
                 success: function () {
+                    $.sticky("<p>You created a new group.</p><br/>");
                     $state.go("home.groups");
                 },
                 error: function () {
@@ -415,6 +419,7 @@ app.controller('GroupCtrl', function($scope, $http, $state, $stateParams) {
                     object.set("group", owner.owner);
                     object.set("class", $scope.class);
                     object.save();
+                    $.sticky("<p>You set this group as your current study group</p><br/>");
                     $state.go($state.current, {}, {reload: true});
                 },
                 error: function (error) {
@@ -446,6 +451,7 @@ app.controller('GroupCtrl', function($scope, $http, $state, $stateParams) {
                     object.set("class", "");
                     object.set("group", "");
                     object.save();
+                    $.sticky("<p>You left the group.</p><br/>");
                     $state.go("home.groups");
                 },
                 error: function (error) {
@@ -463,6 +469,7 @@ app.controller('GroupCtrl', function($scope, $http, $state, $stateParams) {
                 success: function (object) {
                     object.set("in", 1);
                     object.save();
+                    $.sticky("<p>Group added.</p><br/>");
                     $state.go($state.current, {}, {reload: true});
                 },
                 error: function (error) {
@@ -481,7 +488,8 @@ app.controller('GroupCtrl', function($scope, $http, $state, $stateParams) {
                 success: function (object) {
                     object.set("in", 0);
                     object.save();
-                    $state.go("home.groups");
+                    $.sticky("<p>You removed this group.</p><br/>");
+                    $state.go($state.current, {}, {reload: true});
                 },
                 error: function (error) {
 
@@ -513,6 +521,7 @@ app.controller('GroupCtrl', function($scope, $http, $state, $stateParams) {
                     object.save();
                     $state.go($state.current, {}, {reload: true});
                     $state.go("home.groups");
+                    $.sticky("<p>Your group has been deleted.</p><br/>");
                 },
                 error: function (error) {
 
@@ -535,7 +544,7 @@ app.controller('GroupCtrl', function($scope, $http, $state, $stateParams) {
                 group.set("end_time", data.end_time);
                 group.save(null, {
                     success: function () {
-                        alert("You have successfully updated the group.");
+                        $.sticky("<p>You have successfully updated the groups</p><br/>");
                         $state.go("home.groups");
                     },
                     error: function () {
@@ -608,7 +617,7 @@ app.controller('BuddyCtrl', function($http, $scope, $state, $stateParams) {
             success: function(object) {
                 object.set("buddy", 1);
                 object.save();
-                alert("You added " + buddy.buddy);
+                $.sticky("<p>You added this buddy.</p><br/>");
                 $state.go($state.current, {}, {reload: true});
             },
             error: function(error) {
@@ -625,7 +634,7 @@ app.controller('BuddyCtrl', function($http, $scope, $state, $stateParams) {
             success: function(object) {
                 object.set("buddy", 0);
                 object.save();
-                alert("You removed " + buddy.buddy);
+                $.sticky("<p>You removed this buddy.</p><br/>");
                 $state.go($state.current, {}, {reload: true});
             },
             error: function(error) {

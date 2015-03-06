@@ -7,10 +7,13 @@
         </div>
         <!--do something like a dropbar menu to choose ng-model to search for --></div>
 
-    <div class="container" ng-repeat="group in groups | unique: 'class'">
-        <div ng-if="group.in === 1" class="row">
-            <a onclick="clickClass()" ui-sref="class({class: group.class})">
-                <div class="col-xs-12" style="background-color: darkolivegreen">
+    <div class="container" ng-repeat="group in groups | unique: 'class' | filter: {in: 1}">
+        <div class="row">
+            <a ui-sref="class({class: group.class})">
+                <div ng-show="group.in === 1" class="col-xs-12" style="background-color: darkolivegreen">
+                    <h3>{{group.class}}</h3>
+                </div>
+                <div ng-if="group.in === 0" class="col-xs-12" style="background-color: #7E7E71">
                     <h3>{{group.class}}</h3>
                     <p>
 
@@ -26,8 +29,3 @@
         list-style-type: none;
     }
 </style>
-<script>
-    function clickClass() {
-        woopra.track("click_class");
-    }
-</script>
