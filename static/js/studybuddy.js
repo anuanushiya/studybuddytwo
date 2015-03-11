@@ -448,7 +448,7 @@ app.controller('GroupCtrl', function($scope, $http, $state, $stateParams) {
                 object.set("group", "");
                 object.save();
                 $.sticky("<p>You left the group.</p><br/>");
-                $state.go("home.groups");
+                $state.go($state.current, {}, {reload: true});
             },
             error: function (error) {
 

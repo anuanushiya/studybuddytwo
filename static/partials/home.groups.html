@@ -1,7 +1,7 @@
 <div class="container">
     <div ng-controller='UserCtrl' class="jumbotron">
         <h1>study groups</h1>
-        <h3>Welcome back, <a style="color: cadetblue" ui-sref="home.buddy({username: user.getUsername()})">{{user.get('username')}}</a>!</h3>
+        <h3>Welcome back, <a style="color: #B5CB8E" ui-sref="home.buddy({username: user.getUsername()})">{{user.get('username')}}</a>!</h3>
     </div>
     <div ng-repeat="group in groups | reverse" class="container">
         <div ng-if="group.in === 1">

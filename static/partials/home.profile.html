@@ -17,13 +17,14 @@
             <div class="form-group">
                 <input type="password" ng-model="data.new" class="form-control" placeholder="retype new password">
             </div>
-            <div id="buttons">
-                <button type="submit" ng-click="update(data)" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok"></span> save</button>
-                <button type="reset" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> reset</button>
-            </div>
-            <br/><br/>
-            <div class="container">
+            <div class="jumbotron">
                 <div class="row">
+                    <a href="#" ng-click="update(data)">
+                        <div class="col-xs-12" style="background-color: darkolivegreen">
+                            <h3>save</h3>
+                        </div>
+                    </a>
+                    <br/><br/><br/><br/>
                     <a href="#" ng-click="deleteAccount()">
                         <div class="col-xs-12" style="background-color: darkred">
                             <h3>delete account</h3>
