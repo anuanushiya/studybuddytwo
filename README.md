@@ -1,2 +1,2 @@
 # studybuddytwo
-Other prototype of app, used for A/B testing.
+CSE 170 mobile web application. Powered by Parse, AngularJS, NodeJS, and ExpressJS.
