@@ -10,14 +10,7 @@ app.filter("reverse", function() {
     };
 });
 
-/* try to get this working */
-$('input').focus( function() {
-    $('.navbar-bottom-fixed').hide();
-    console.log("SWAG");
-});
-
 function goBack() {
-    //woopra.track("go_back");
     window.history.go(-1);
 };
 

@@ -8,14 +8,15 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="js/studybuddy.js"></script>
     </head>
     <body>
         <div id="navbar" class="col-xs-12 navbar-inverse navbar-fixed-bottom">
             <div style="margin-top: 10px;" class="row" id="bottomNav">
-                <div class="col-xs-3 text-center"><a ui-sref="home.groups"><i class="glyphicon glyphicon-home"></i><br>home</a></div>
-                <div class="col-xs-3 text-center"><a ui-sref="home.buddies"><i class="glyphicon glyphicon-globe"></i><br>buddies</a></div>
-                <div class="col-xs-3 text-center"><a ui-sref="home.profile"><i class="glyphicon glyphicon-user"></i><br>profile</a></div>
-                <div class="col-xs-3 text-center"><a ng-click="logOut(user)" href="#"><i class="glyphicon glyphicon-log-out"></i><br>logout</a></div>
+                <div class="col-xs-3 text-center"><a ui-sref="home.groups"><i class="glyphicon glyphicon-home"></i><br><span>home</span></a></div>
+                <div class="col-xs-3 text-center"><a ui-sref="home.buddies"><i class="glyphicon glyphicon-globe"></i><br><span>buddies</span></a></div>
+                <div class="col-xs-3 text-center"><a ui-sref="home.profile"><i class="glyphicon glyphicon-user"></i><br><span>profile</span></a></div>
+                <div class="col-xs-3 text-center"><a ng-click="logOut(user)" href="#"><i class="glyphicon glyphicon-log-out"></i><br><span>logout</span></a></div>
             </div>
         </div>
         <div ui-view></div>
