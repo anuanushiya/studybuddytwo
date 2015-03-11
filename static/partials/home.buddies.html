@@ -4,8 +4,8 @@
         <p>see what others are studying for.</p>
         <div>
             <p><strong>Search by username or pick a class to search for buddies.<strong></p>
-            <button class="btn btn-default btn-lg" ng-click="show=false">search by class</button>
-            <button class="btn btn-default btn-lg" ng-click="show=true">search by username</button>
+            <button class="btn btn-default btn-lg" ng-click="show=false">class</button>
+            <button class="btn btn-default btn-lg" ng-click="show=true">username</button>
         </div>
     </div>
     <div ng-show="!show" class="container" ng-repeat="group in groups | unique: 'class' | filter: {in: 1}">
