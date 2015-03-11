@@ -28,7 +28,12 @@
             <div ng-if="results.length !== buddies.length" ng-repeat="buddy in buddies | filter: q as results"}>
                 <div class="row">
                     <a ui-sref="home.buddy({username: buddy.username})">
-                        <div class="col-xs-12" style="background-color: darkolivegreen">
+                        <div ng-if="buddy.buddy === 1" class="col-xs-12" style="background-color: darkolivegreen">
+                            <h3>{{buddy.username}}</h3>
+                            <h4 ng-if="buddy.class">is studying for {{buddy.class}}</h4>
+                            <h4 ng-if="!buddy.class">is not studying right now.</h4>
+                        </div>
+                        <div ng-if="buddy.buddy === 0" class="col-xs-12" style="background-color: darkgrey">
                             <h3>{{buddy.username}}</h3>
                             <h4 ng-if="buddy.class">is studying for {{buddy.class}}</h4>
                             <h4 ng-if="!buddy.class">is not studying right now.</h4>
